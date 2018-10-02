@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Host(models.Model):
-    hostname = models.CharField(max_length=30,verbose_name="主机名")
+    hostname = models.CharField(max_length=30,verbose_name="主机名",unique=True)
     mac = models.CharField(max_length=40,verbose_name="MAC地址")
     outer_ip = models.CharField(verbose_name="外网地址",max_length=40,blank=True,null=True) # 如果使用GenericIPAddressField类型,在插入的时候会报错,后续解决一下
     os_platform = models.CharField(max_length=20,verbose_name="系统平台")
