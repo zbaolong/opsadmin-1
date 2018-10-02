@@ -10,3 +10,5 @@ MEM_UNIT_DICT = {
     "GB": 1024*1024,
     "TB": 1024*1024*1024,
 }
+
+HOST_FILE = "hostname.json"

@@ -25,8 +25,14 @@ def get_mac():
 
 def get_hostname():
     ret = {}
-    hostname = socket.gethostname()
-    ret['hostname'] = hostname
+    host_file = os.path.join(BASE_DIR,'file',settings.HOST_FILE)
+    if not os.path.exists(settings.HOST_FILE):
+    	hostname = socket.gethostname()
+    	ret['hostname'] = hostname
+        with open(host_file,'w') as f:
+	    json.dump(ret,f)
+    with open(host_file) as f:
+	ret['hostname'] = json.load(f)['hostname']
     return ret
 
 def get_ip():
