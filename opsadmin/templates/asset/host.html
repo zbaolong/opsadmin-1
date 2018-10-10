@@ -18,14 +18,15 @@
     <![endif]-->
   </head>
   <body>
-		<div>
+		<div class="col-md-8">
 	     <table class="table table-hover table-bordered">
 					<thead>
 						<tr>
-							<td>主机名</td>
-							<td>外网IP</td>
-							<td>操作系统</td>
-							<td>系统版本</td>
+							<th>主机名</th>
+							<th>外网IP</th>
+							<th>操作系统</th>
+							<th>系统版本</th>
+                            <th>功能</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -35,6 +36,11 @@
 								<td> {{ row.outer_ip }} </td>
 								<td> {{ row.os_type }} </td>
 								<td> {{ row.os_version }} </td>
+                                <td>
+                                    <a href="#">详细信息</a>
+                                    <a href="#">删除</a>
+                                    <a href="#">编辑</a>
+                                </td>
 							</tr>
 						{% endfor %}
 				  </tbody>
