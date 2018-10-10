@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}
+    主机详细信息
+{% endblock %}
+
+{% block content %}
+		<div>
+	     <table class="table table-bordered table-hover">
+             <thead>
+                 <tr>
+                     <th>服务器信息</th>
+                 </tr>
+             </thead>
+
+             <tbody>
+                 <tr>
+                     <th>主机名</th>
+                     <th> {{ host_obj.hostname }} </th>
+                 </tr>
+                 <tr>
+                     <th>外网IP</th>
+                     <th> {{ host_obj.outer_ip }} </th>
+                 </tr>
+                 <tr>
+                     <th>MAC</th>
+                     <th> {{ host_obj.mac }} </th>
+                 </tr>
+                 <tr>
+                     <th>平台</th>
+                     <th> {{ host_obj.os_platform }} </th>
+                 <tr>
+                     <th>操作系统</th>
+                     <th> {{ host_obj.os_type }} </th>
+                 </tr>
+                 <tr>
+                    <th>系统版本</th>
+                    <th> {{ host_obj.os_version }} </th>
+                 </tr>
+                 <tr>
+                    <th>内核版本</th>
+                    <th> {{ host_obj.os_kernel }} </th> 
+                 </tr>
+                 <tr>
+                     <th>CPU架构</th> 
+                     <th> {{ host_obj.cpu_arch }} </th>
+                 </tr>
+                 <tr>
+                     <th>物理CPU核心数</th>
+                     <th> {{ host_obj.cpu_physical_num }} </th>
+                 </tr>
+                 <tr>
+                     <th>逻辑CPU核心数</th>
+                     <th> {{ host_obj.cpu_logical_num }} </th>
+                 </tr>
+                 <tr>
+                     <th>内存大小</th>
+                     <th> {{ host_obj.mem_total }} </th>
+                 </tr>
+             </tbody>
+		</table>
+	  </div>	
+{% endblock %}

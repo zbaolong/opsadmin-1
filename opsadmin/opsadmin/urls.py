@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'api/add_host/',asset.api.host.add_host,name='add_host'),
     url(r'show_hosts/',asset.views.host.show_hosts,name='show_hosts'),
+    url(r'show_detail_host/',asset.views.host.show_detail_host,name='show_detail_host'),
 ]
