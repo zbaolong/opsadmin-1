@@ -93,10 +93,10 @@ def run():
             json = json.dumps(data),
 	)
     print(r)
-    
+
 
 
 if __name__ == '__main__':
-    run()
-    #print(asset_info())
+    #run()
+    print(asset_info())
 

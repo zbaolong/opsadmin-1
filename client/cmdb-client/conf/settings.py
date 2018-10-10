@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-ASSET_API = "http://192.168.2.107:9090/add_host/"
+ASSET_API = "http://localhost:9090/api/add_host/"
 
 MEM_UNIT = "MB"
 
