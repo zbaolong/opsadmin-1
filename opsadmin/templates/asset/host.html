@@ -16,7 +16,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						{% for row in host_obj %}
+						{% for row in posts.object_list %}
 							<tr>
 								<td> {{ row.hostname }} </td>
 								<td> {{ row.outer_ip }} </td>
@@ -31,5 +31,14 @@
 						{% endfor %}
 				  </tbody>
 			 </table>
+             {% if posts.has_previous %}
+                <a href="/show_hosts/?p={{ posts.previous_page_number}}">上一页</a> 
+             {% else %}
+                <a href="#">上一页</a>
+             {% endif %}
+             {% if posts.has_next %}
+                <a href="/show_hosts/?p={{ posts.next_page_number }}">下一页</a>
+             {% endif %}
+             <span>{{ posts.number }}</span>/<span>{{ paginator.num_pages }}</span>
 	  </div>	
 {% endblock %}
