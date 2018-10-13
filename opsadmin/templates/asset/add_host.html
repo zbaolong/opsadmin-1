@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <button type="button" class="btn btn-primary" id="addHost">添加主机</button>
+    </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addHostModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加主机</h4>
+      </div>
+      <div class="modal-body">
+		<form class="form-horizontal">
+  			<div class="form-group">
+    			<label for="host" class="col-sm-2 control-label">主机名</label>
+    			<div class="col-sm-10">
+      				<input type="text" class="form-control" id="host" name="hostname" placeholder="主机名(必须)">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="outip" class="col-sm-2 control-label">外网IP</label>
+    			<div class="col-sm-10">
+      				<input type="text" class="form-control" id="outip"  name="outer_ip" placeholder="外网IP(必须)">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="memtotal" class="col-sm-2 control-label">内存总大小</label>
+    			<div class="col-sm-10">
+      				<input type="text" class="form-control" id="memtotal" name="mem_total" placeholder="内存总大小(非必须)">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="mac_addr" class="col-sm-2 control-label">MAC地址</label>
+    			<div class="col-sm-10">
+      				<input type="text" class="form-control" id="mac_addr" name="mac" placeholder="MAC地址(非必须)">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="osplat" class="col-sm-2 control-label">平台</label>
+    			<div class="col-sm-10">
+      				<input type="text" class="form-control" id="osplat" name="os_platform" placeholder="平台(必须)">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="ostype" class="col-sm-2 control-label">操作系统</label>
+    			<div class="col-sm-10">
+      				<input type="text" class="form-control" id="ostype" name="os_type" placeholder="操作系统(必须)">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="osversion" class="col-sm-2 control-label">系统版本</label>
+    			<div class="col-sm-10">
+      				<input type="text" class="form-control" id="osversion" name="os_version" placeholder="系统版本(非必须)">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="oskernel" class="col-sm-2 control-label">内核版本</label>
+    			<div class="col-sm-10">
+      				<input type="text" class="form-control" id="oskernel" name="os_kernel" placeholder="内核版本(非必须)">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="cpuarch" class="col-sm-2 control-label">CPU架构</label>
+    			<div class="col-sm-10">
+      				<input type="text" class="form-control" id="cpuarch" name="cpu_arch" placeholder="CPU架构(非必须)">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="cpupnum" class="col-sm-2 control-label">CPU物理个数</label>
+    			<div class="col-sm-10">
+      				<input type="text" class="form-control" id="cpupnum" name="cpu_physical_num" placeholder="CPU物理个数(非必须)">
+    			</div>
+  			</div>
+  			<div class="form-group">
+    			<label for="cpulnum" class="col-sm-2 control-label">CPU逻辑个数</label>
+    			<div class="col-sm-10">
+      				<input type="text" class="form-control" id="cpulnum" name="cpu_logical_num" placeholder="CPU逻辑个数(必须)">
+    			</div>
+  			</div>
+	
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="saveHost">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	<script>
+		$(function(){
+			addHostEvent();
+			saveHostEvent();
+		});
+
+		function addHostEvent(){
+			$("#addHost").click(function (){
+				$("#addHostModal").modal('show');
+			});
+		};
+
+		function saveHostEvent(){
+			var postData = {};
+			$("#saveHost").click(function (){
+				$("#addHostModal").find("input").each(function (){
+					console.log($(this)[0]);
+					k = $(this).attr('name');
+					v = $(this).val();
+					postData[k] = v;
+					console.log(postData);
+				});
+
+				$.ajax({
+					url: "/add_host/",
+					type: "POST",
+					data: postData,
+					success:function(arg){
+						console.log(arg);
+					}
+				});
+
+			});
+		};
+	</script>
+{% endblock %}
