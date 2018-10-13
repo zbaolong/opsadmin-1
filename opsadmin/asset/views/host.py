@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from asset.models import Host
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 
@@ -41,3 +41,9 @@ def show_detail_host(request):
     host_obj = Host.objects.filter(id=host_id).first()
     print(host_obj)
     return render(request,'asset/detail_host.html',locals())
+
+def del_host(request):
+    host_id = request.GET.get('host_id')
+    Host.objects.filter(id=host_id).delete()
+    return redirect("/show_hosts/")
+
